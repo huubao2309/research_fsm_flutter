@@ -1,2 +1,5 @@
-# research_fsm_flutter
-Reaseach FSM Flutter
+# Research Finite State Machine in Flutter
+
+## Setup: 
+Flutter: v3.29.3
+
