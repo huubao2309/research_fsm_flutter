@@ -7,6 +7,6 @@ abstract class LogUtils {
   /// Log state lifecycle events
   void logStateLifecycle(String message);
 
-  /// Log state transitions
-  void logStateTransition(String message) ;
+  /// Log update state
+  void logUpdateState(String message) ;
 }

@@ -12,6 +12,7 @@ class TrafficLightStateMachine {
   /// Must call createStateMachine() to initial
   late StateMachine _stateMachine;
 
+  /// Note: Change [initialState] in graph of [StateMachine.create]
   final TrafficLightStateBase initState = GreenState();
 
   Future<void> createStateMachine(OnStateChanged onStateChanged) async {

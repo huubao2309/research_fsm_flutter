@@ -12,11 +12,11 @@ class LogUtilsImpl extends LogUtils {
     }
   }
 
-  /// Log state transitions
+  /// Log update state
   @override
-  void logStateTransition(String message) {
+  void logUpdateState(String message) {
     if (kDebugMode) {
-      print("Transition: $message");
+      print("Update State: $message");
     }
   }
 

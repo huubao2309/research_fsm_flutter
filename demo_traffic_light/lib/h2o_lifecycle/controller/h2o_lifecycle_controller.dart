@@ -5,7 +5,6 @@ import 'package:demo_traffic_light/h2o_lifecycle/model/h20_state/h2o_state.dart'
 import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state_machine.dart';
 import 'package:demo_traffic_light/utils/count_down_timer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 /// A class that manages the H2O state machine using fsm2 library
 class H2OLifecycleController extends ChangeNotifier {

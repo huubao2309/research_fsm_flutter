@@ -70,7 +70,7 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
 
   /// Update the current state and notify listeners
   void _updateState(H2OState newState) {
-    print("11111 Update State: $newState");
+    _logUtils.logStateLifecycle("$newState");
     _currentState = newState;
     notifyStateChanged(newState);
   }
@@ -85,7 +85,8 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
     _logUtils.logStateLifecycle('Exiting $state State');
   }
 
-  Future<void> _onTransition(StateDefinition<State>? previous, Event? event, StateDefinition<State>? current) async {
+  Future<void> _onTransition(
+      StateDefinition<State>? previous, Event? event, StateDefinition<State>? current) async {
     _logUtils.logTransition(previous, event, current);
   }
 }
