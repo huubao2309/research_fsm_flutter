@@ -17,43 +17,50 @@ class TrafficLightStateMachine {
 
   Future<void> createStateMachine(OnStateChanged onStateChanged) async {
     _stateMachine = await StateMachine.create(
-      (g) =>
-          g
-            ..initialState<GreenState>()
-            ..state<GreenState>(
-              (b) =>
-                  b..on<NextStateEvent, YellowState>(
-                    sideEffect: (e) async {
-                      Utils.log('Transitioning from Green to Yellow');
-                      onStateChanged.call(YellowState());
-                      return;
-                    },
-                  ),
-            )
-            ..state<YellowState>(
-              (b) =>
-                  b..on<NextStateEvent, RedState>(
-                    sideEffect: (e) async {
-                      Utils.log('Transitioning from Yellow to Red');
-                      onStateChanged.call(RedState());
-                      return;
-                    },
-                  ),
-            )
-            ..state<RedState>(
-              (b) =>
-                  b..on<NextStateEvent, GreenState>(
-                    sideEffect: (e) async {
-                      Utils.log('Transitioning from Red to Green');
-                      onStateChanged.call(GreenState());
-                      return;
-                    },
-                  ),
+      (g) => g
+        ..initialState<GreenState>()
+        ..state<GreenState>(
+          (b) => b
+            ..on<NextStateEvent, YellowState>(
+              sideEffect: (e) async {
+                Utils.log('Transitioning from Green to Yellow');
+                onStateChanged.call(YellowState());
+                return;
+              },
             ),
+        )
+        ..state<YellowState>(
+          (b) => b
+            ..on<NextStateEvent, RedState>(
+              sideEffect: (e) async {
+                Utils.log('Transitioning from Yellow to Red');
+                onStateChanged.call(RedState());
+                return;
+              },
+            ),
+        )
+        ..state<RedState>(
+          (b) => b
+            ..on<NextStateEvent, GreenState>(
+              sideEffect: (e) async {
+                Utils.log('Transitioning from Red to Green');
+                onStateChanged.call(GreenState());
+                return;
+              },
+            ),
+        ),
     );
+
+    _exportGraph(_stateMachine);
   }
 
   void applyEvent<E extends Event>(E event) {
     _stateMachine.applyEvent(event);
+  }
+
+  void _exportGraph(StateMachine stateMachine) {
+    stateMachine
+      ..analyse()
+      ..export('state_machine_export/traffic_light/traffic_light.smcat');
   }
 }

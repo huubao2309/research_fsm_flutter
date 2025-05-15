@@ -17,6 +17,8 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
 
   final LogUtils _logUtils = LogUtilsImpl();
 
+  late StateMachine _stateMachine;
+
   /// Initialize the state machine
   Future<void> init() async {
     await initialize();
@@ -28,7 +30,7 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
   /// Create the state machine with all possible transitions
   @override
   Future<StateMachine> createStateMachine() async {
-    return StateMachine.create(
+    _stateMachine = await StateMachine.create(
       (g) => g
         ..initialState<Solid>()
         ..state<Solid>(
@@ -66,6 +68,16 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
         )
         ..onTransition(_onTransition),
     );
+
+    _exportGraph(_stateMachine);
+
+    return _stateMachine;
+  }
+
+  void _exportGraph(StateMachine stateMachine) {
+    stateMachine
+      ..analyse()
+      ..export('state_machine_export/water.svg');
   }
 
   /// Update the current state and notify listeners
