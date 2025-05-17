@@ -1,0 +1,11 @@
+
+GreenState {
+	GreenState => YellowState : NextStateEvent;
+},
+YellowState {
+	YellowState => RedState : NextStateEvent;
+},
+RedState {
+	RedState => GreenState : NextStateEvent;
+};
+initial => GreenState : GreenState;

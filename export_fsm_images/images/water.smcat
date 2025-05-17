@@ -1,0 +1,12 @@
+
+Solid {
+	Solid => Liquid : MeltEvent;
+},
+Liquid {
+	Liquid => Solid : FreezeEvent;
+	Liquid => Gas : VaporizeEvent;
+},
+Gas {
+	Gas => Liquid : CondenseEvent;
+};
+initial => Solid : Solid;
