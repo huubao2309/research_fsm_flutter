@@ -1,6 +1,6 @@
 import 'package:demo_traffic_light/core/fsm/base_state_machine.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/events/h2o_events.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/h2o_state/h2o_state.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/events/h2o_events.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state/h2o_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fsm2/fsm2.dart';
 

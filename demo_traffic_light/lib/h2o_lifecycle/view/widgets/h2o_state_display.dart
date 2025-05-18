@@ -1,4 +1,4 @@
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/h2o_state/h2o_state.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state/h2o_state.dart';
 import 'package:flutter/material.dart';
 
 /// Widget to display the current H2O state

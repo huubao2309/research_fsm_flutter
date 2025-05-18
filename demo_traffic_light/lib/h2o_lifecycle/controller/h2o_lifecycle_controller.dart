@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/events/h2o_events.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/h2o_state/h2o_state.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/h2o_state_machine.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/events/h2o_events.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state/h2o_state.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state_machine.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 /// Controller for the H2O lifecycle advanced demo
 class H2OLifecycleController extends ChangeNotifier {

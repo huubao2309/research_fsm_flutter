@@ -1,8 +1,8 @@
-import 'package:demo_traffic_light/h2o_lifecycle_advance/controller/h2o_lifecycle_controller.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/model/h2o_state/h2o_state.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/view/widgets/h2o_action_buttons.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/view/widgets/h2o_state_display.dart';
-import 'package:demo_traffic_light/h2o_lifecycle_advance/view/widgets/temperature_indicator.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/controller/h2o_lifecycle_controller.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/model/h2o_state/h2o_state.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/view/widgets/h2o_action_buttons.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/view/widgets/h2o_state_display.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/view/widgets/temperature_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

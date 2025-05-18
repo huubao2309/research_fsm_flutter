@@ -1,4 +1,4 @@
-import 'package:demo_traffic_light/h2o_lifecycle_advance/view/h2o_lifecycle_advance_screen.dart';
+import 'package:demo_traffic_light/h2o_lifecycle/view/h2o_lifecycle_screen.dart';
 import 'package:demo_traffic_light/traffic_light/traffic_light_demo.dart';
 import 'package:flutter/material.dart';
 
