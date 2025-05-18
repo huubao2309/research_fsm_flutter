@@ -50,17 +50,9 @@ class TrafficLightStateMachine {
             ),
         ),
     );
-
-    _exportGraph(_stateMachine);
   }
 
   void applyEvent<E extends Event>(E event) {
     _stateMachine.applyEvent(event);
-  }
-
-  void _exportGraph(StateMachine stateMachine) {
-    stateMachine
-      ..analyse()
-      ..export('state_machine_export/traffic_light/traffic_light.smcat');
   }
 }

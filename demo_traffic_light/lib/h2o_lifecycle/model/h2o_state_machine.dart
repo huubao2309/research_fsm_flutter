@@ -69,15 +69,7 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
         ..onTransition(_onTransition),
     );
 
-    _exportGraph(_stateMachine);
-
     return _stateMachine;
-  }
-
-  void _exportGraph(StateMachine stateMachine) {
-    stateMachine
-      ..analyse()
-      ..export('lib/images/smcat/water.smcat');
   }
 
   /// Update the current state and notify listeners
