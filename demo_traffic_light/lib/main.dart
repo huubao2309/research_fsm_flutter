@@ -1,4 +1,3 @@
-import 'package:demo_traffic_light/h2o_lifecycle/view/h2o_lifecycle_screen.dart';
 import 'package:demo_traffic_light/h2o_lifecycle_advance/view/h2o_lifecycle_advance_screen.dart';
 import 'package:demo_traffic_light/traffic_light/traffic_light_demo.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +17,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-
       home: const HomePage(),
     );
   }
 }
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -45,16 +44,6 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Traffic Light Demo'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const H2OLifecycleScreen()),
-                );
-              },
-              child: const Text('H₂O Lifecycle Demo'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
