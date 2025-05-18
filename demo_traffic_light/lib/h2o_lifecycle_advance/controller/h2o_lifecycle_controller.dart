@@ -149,6 +149,7 @@ class H2OLifecycleController extends ChangeNotifier {
     notifyListeners();
   }
 
+
   /// Start the heating process
   void _startHeatingProcess() {
     _logInfo('Starting heating process from $_temperature°C');
@@ -170,7 +171,7 @@ class H2OLifecycleController extends ChangeNotifier {
       }
 
       // Check for state transitions (but don't stop the timer)
-      _checkStateTransition(false);
+      _checkStateTransition(isHeating: true, stopTimer: false);
 
       notifyListeners();
     });
@@ -197,7 +198,7 @@ class H2OLifecycleController extends ChangeNotifier {
       }
 
       // Check for state transitions (but don't stop the timer)
-      _checkStateTransition(false);
+      _checkStateTransition(isHeating: false, stopTimer: false);
 
       notifyListeners();
     });
@@ -205,32 +206,43 @@ class H2OLifecycleController extends ChangeNotifier {
 
   /// Check if a state transition should occur based on temperature
   /// [stopTimer] - whether to stop the timer after transition (default: true)
-  void _checkStateTransition([bool stopTimer = true]) {
+  void _checkStateTransition({required bool isHeating, bool stopTimer = true}) {
     final currentState = _stateMachine.currentState;
 
-    // Check for transitions based on temperature
-    if (currentState is Solid && _temperature > 0) {
-      // Solid -> Liquid
-      _logInfo('Temperature exceeds 0°C, transitioning from Solid to Liquid');
-      _stateMachine.applyEvent(MeltEvent());
-      if (stopTimer) _stopTemperatureChange();
-    } else if (currentState is Liquid) {
-      if (_temperature <= 0) {
-        // Liquid -> Solid
-        _logInfo('Temperature at or below 0°C, transitioning from Liquid to Solid');
-        _stateMachine.applyEvent(FreezeEvent());
+    if(isHeating) {
+      if(currentState is Solid) {
+        // Solid -> Liquid
+        _logInfo('Temperature exceeds 0°C, transitioning from Solid to Liquid');
+        _stateMachine.applyEvent(MeltEvent(temperature: _temperature));
         if (stopTimer) _stopTemperatureChange();
-      } else if (_temperature > 100) {
+        return;
+      }
+
+      if(currentState is Liquid) {
         // Liquid -> Gas
         _logInfo('Temperature exceeds 100°C, transitioning from Liquid to Gas');
-        _stateMachine.applyEvent(VaporizeEvent());
+        _stateMachine.applyEvent(VaporizeEvent(temperature: _temperature));
         if (stopTimer) _stopTemperatureChange();
+        return;
       }
-    } else if (currentState is Gas && _temperature <= 100) {
-      // Gas -> Liquid
-      _logInfo('Temperature at or below 100°C, transitioning from Gas to Liquid');
-      _stateMachine.applyEvent(CondenseEvent());
-      if (stopTimer) _stopTemperatureChange();
+    }
+    // Cooling
+    else {
+      if(currentState is Liquid) {
+        // Liquid -> Solid
+        _logInfo('Temperature at or below 0°C, transitioning from Liquid to Solid');
+        _stateMachine.applyEvent(FreezeEvent(temperature: _temperature));
+        if (stopTimer) _stopTemperatureChange();
+        return;
+      }
+
+      if(currentState is Gas) {
+        // Gas -> Liquid
+        _logInfo('Temperature at or below 100°C, transitioning from Gas to Liquid');
+        _stateMachine.applyEvent(CondenseEvent(temperature: _temperature));
+        if (stopTimer) _stopTemperatureChange();
+        return;
+      }
     }
   }
 

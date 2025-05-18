@@ -2,6 +2,9 @@ part of '../h2o_state.dart';
 
 /// Liquid state (Water)
 class Liquid extends H2OState {
+  static int minStateTemperature = 1;
+  static int maxStateTemperature = 100;
+
   /// Direction of transition (from Solid or from Gas)
   final TransitionDirection direction;
 
@@ -21,10 +24,10 @@ class Liquid extends H2OState {
   String get stateDescription => 'Water (H₂O in liquid state)';
 
   @override
-  int get minTemperature => 1;
+  int get minTemperature => minStateTemperature;
 
   @override
-  int get maxTemperature => 100;
+  int get maxTemperature => maxStateTemperature;
 
   @override
   bool get isHeatUpEnabled => direction == TransitionDirection.fromSolid ? false : true;
@@ -40,7 +43,7 @@ class Liquid extends H2OState {
 enum TransitionDirection {
   /// Transitioning from Solid to Liquid
   fromSolid,
-  
+
   /// Transitioning from Gas to Liquid
   fromGas
 }

@@ -2,6 +2,9 @@ part of '../h2o_state.dart';
 
 /// Solid state (Ice)
 class Solid extends H2OState {
+  static int minStateTemperature = -1000;
+  static int maxStateTemperature = 0;
+
   @override
   String get name => 'Solid';
 
@@ -15,10 +18,10 @@ class Solid extends H2OState {
   String get stateDescription => 'Ice (H₂O in solid state)';
 
   @override
-  int get minTemperature => -1000;
+  int get minTemperature => minStateTemperature;
 
   @override
-  int get maxTemperature => 0;
+  int get maxTemperature => maxStateTemperature;
 
   @override
   bool get isHeatUpEnabled => true;

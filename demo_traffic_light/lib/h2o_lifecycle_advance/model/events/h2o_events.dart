@@ -9,10 +9,19 @@ abstract class H2OEvent extends Event {
 
   /// Human-readable description of the event
   String get description;
+
+  /// Current temperature in Celsius
+  final int temperature;
+
+  /// Constructor
+  H2OEvent({required this.temperature});
 }
 
 /// Event to melt ice (Solid -> Liquid)
 class MeltEvent extends H2OEvent {
+  /// Constructor
+  MeltEvent({required super.temperature});
+
   @override
   String get description => 'Melting ice to water';
 
@@ -22,6 +31,9 @@ class MeltEvent extends H2OEvent {
 
 /// Event to freeze water (Liquid -> Solid)
 class FreezeEvent extends H2OEvent {
+  /// Constructor
+  FreezeEvent({required super.temperature});
+
   @override
   String get description => 'Freezing water to ice';
 
@@ -31,6 +43,9 @@ class FreezeEvent extends H2OEvent {
 
 /// Event to vaporize water (Liquid -> Gas)
 class VaporizeEvent extends H2OEvent {
+  /// Constructor
+  VaporizeEvent({required super.temperature});
+
   @override
   String get description => 'Vaporizing water to steam';
 
@@ -40,6 +55,9 @@ class VaporizeEvent extends H2OEvent {
 
 /// Event to condense steam (Gas -> Liquid)
 class CondenseEvent extends H2OEvent {
+  /// Constructor
+  CondenseEvent({required super.temperature});
+
   @override
   String get description => 'Condensing steam to water';
 

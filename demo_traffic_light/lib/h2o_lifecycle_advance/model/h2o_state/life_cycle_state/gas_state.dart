@@ -2,6 +2,9 @@ part of '../h2o_state.dart';
 
 /// Gas state (Steam)
 class Gas extends H2OState {
+  static int minStateTemperature = 101;
+  static int maxStateTemperature = 1000;
+
   @override
   String get name => 'Gas';
 
@@ -15,10 +18,10 @@ class Gas extends H2OState {
   String get stateDescription => 'Steam (H₂O in gaseous state)';
 
   @override
-  int get minTemperature => 101;
+  int get minTemperature => minStateTemperature;
 
   @override
-  int get maxTemperature => 1000;
+  int get maxTemperature => maxStateTemperature;
 
   @override
   bool get isHeatUpEnabled => false;

@@ -27,7 +27,11 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
         ..state<Solid>(
           (b) => b
             ..on<MeltEvent, Liquid>(
+              // Guard condition
+              condition: (e) => e.nextState.isRightTemperature((e).temperature),
               sideEffect: (H2OEvent e) async {
+                _logStateLifecycle(
+                    'Temperature above ${e.nextState.minTemperature}°C, melting ice to water');
                 _updateState(e.nextState);
               },
             ),
@@ -37,12 +41,20 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
             ..onEnter(_onEnterState)
             ..onExit(_onExitState)
             ..on<FreezeEvent, Solid>(
+              // Guard condition
+              condition: (e) => e.nextState.isRightTemperature((e).temperature),
               sideEffect: (H2OEvent e) async {
+                _logStateLifecycle(
+                    'Temperature at or below ${e.nextState.maxTemperature}°C, freezing water to ice');
                 _updateState(e.nextState);
               },
             )
             ..on<VaporizeEvent, Gas>(
+              // Guard condition
+              condition: (e) => e.nextState.isRightTemperature((e).temperature),
               sideEffect: (H2OEvent e) async {
+                _logStateLifecycle(
+                    'Temperature above ${e.nextState.minTemperature}°C, vaporizing water to steam');
                 _updateState(e.nextState);
               },
             ),
@@ -52,7 +64,11 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
             ..onEnter(_onEnterState)
             ..onExit(_onExitState)
             ..on<CondenseEvent, Liquid>(
+              // Guard condition
+              condition: (e) => e.nextState.isRightTemperature((e).temperature),
               sideEffect: (H2OEvent e) async {
+                _logStateLifecycle(
+                    'Temperature at or below ${e.nextState.maxTemperature}°C, condensing steam to water');
                 _updateState(e.nextState);
               },
             ),
@@ -94,9 +110,11 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
   }
 
   /// Log state transitions
-  void _logTransition(StateDefinition<State>? previous, Event? event, StateDefinition<State>? current) {
+  void _logTransition(
+      StateDefinition<State>? previous, Event? event, StateDefinition<State>? current) {
     if (kDebugMode) {
-      print("H2O Transition: ${previous?.stateType} --[${event?.runtimeType}]--> ${current?.stateType}");
+      print(
+          "H2O Transition: ${previous?.stateType} --[${event?.runtimeType}]--> ${current?.stateType}");
     }
   }
 }
