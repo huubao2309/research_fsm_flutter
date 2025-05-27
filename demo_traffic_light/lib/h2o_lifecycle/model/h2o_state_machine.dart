@@ -26,6 +26,8 @@ class H2OStateMachine extends BaseStateMachine<H2OState> {
         ..initialState<Solid>()
         ..state<Solid>(
           (b) => b
+            ..onEnter(_onEnterState)
+            ..onExit(_onExitState)
             ..on<MeltEvent, Liquid>(
               // Guard condition
               condition: (e) => e.nextState.isRightTemperature((e).temperature),

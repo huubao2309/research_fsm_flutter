@@ -1,4 +1,5 @@
 import 'package:demo_traffic_light/h2o_lifecycle/view/h2o_lifecycle_screen.dart';
+import 'package:demo_traffic_light/student_infos/student_info_screen.dart';
 import 'package:demo_traffic_light/traffic_light/traffic_light_demo.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +55,16 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('H₂O Lifecycle Advanced Demo'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StudentInfoScreen()),
+                );
+              },
+              child: const Text('Student Information'),
             ),
           ],
         ),

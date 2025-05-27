@@ -1,0 +1,15 @@
+
+InitialState {
+	InitialState => LoadingState : FetchStudentsEvent;
+},
+LoadingState {
+	LoadingState => LoadedState : StudentsLoadedEvent;
+	LoadingState => ErrorState : ErrorEvent;
+},
+LoadedState {
+	LoadedState => LoadingState : FetchStudentsEvent;
+},
+ErrorState {
+	ErrorState => LoadingState : FetchStudentsEvent;
+};
+initial => InitialState : InitialState;

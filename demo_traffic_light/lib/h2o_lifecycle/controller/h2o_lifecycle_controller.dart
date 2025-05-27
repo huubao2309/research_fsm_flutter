@@ -11,10 +11,10 @@ class H2OLifecycleController extends ChangeNotifier {
   final int _maxTemperature = 300;
 
   // Increase temperature by 30°C per second
-  final int heatingRate = 20;
+  final int heatingRate = 30;
 
   // Decrease temperature by 20°C per second
-  final int coolingRate = 15;
+  final int coolingRate = 20;
 
   /// The state machine
   final H2OStateMachine _stateMachine = H2OStateMachine();
